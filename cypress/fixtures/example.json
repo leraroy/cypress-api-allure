@@ -1,0 +1,7 @@
+{
+  "name": "test_goal",
+  "due_date": "25",
+  "description": "This is test goal",
+  "multiple_owners": "true",
+  "color": "red"
+}
