@@ -8,8 +8,8 @@
 /dataSources.local.xml
 .idea
 node_modules/
-/allure-report/
-/allure-results/
+allure-report/
+allure-results/
 
 
 
