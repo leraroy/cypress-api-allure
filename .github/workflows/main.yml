@@ -1,0 +1,60 @@
+name: CI
+
+# Controls when the workflow will run
+on: push
+    
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    - uses: actions/checkout@v4
+    
+      # Install NPM dependencies, cache them correctly
+      # and run all Cypress tests
+    - name: Install Cypress
+      run: npm install cypress --save-dev 
+       
+    - name: Install allure
+      run: npm install -g allure-commandline --save-dev
+      
+    - name: Cypress run
+      uses: cypress-io/github-action@v6 
+
+    - name: Reports Generate
+      run: npm run allure-report
+       
+    - uses: actions/upload-artifact@master
+      with:
+        name: allure-results
+        path: allure-results
+        retention-days: 20
+  
+    - name: Get Allure history
+      uses: actions/checkout@v2
+      if: always()
+      continue-on-error: true
+      with:
+          ref: gh-pages
+          path: gh-pages
+
+    - name: Test marketplace action
+      uses: simple-elf/allure-report-action@master
+      if: always()
+      id: allure-report
+      with:
+          allure_results: allure-results
+          gh_pages: gh-pages
+          allure_report: allure-report
+          allure_history: allure-history
+    
+    - name: Deploy report to Github Pages
+      if: always()
+      uses: peaceiris/actions-gh-pages@v2
+      env:
+         PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         PUBLISH_BRANCH: gh-pages
+         PUBLISH_DIR: allure-history
