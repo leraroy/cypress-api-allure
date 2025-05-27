@@ -1,7 +1,7 @@
 {
   "name": "CypressAPI",
   "version": "1.0.0",
-  "description": "",
+  "description": "Cypress API with allure report",
   "main": "index.js",
   "scripts": {
     "test:run": "cypress open",
