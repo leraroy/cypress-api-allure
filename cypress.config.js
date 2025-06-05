@@ -20,7 +20,7 @@ module.exports = defineConfig({
       env: {
         allureLogCypress:false,
         allureReuseAfterSpec: true,
-        token: 'pk_194691600_50Y62ZQB7XRCCZGOICZTU6YO0YWQAONK',
+        token: 'pk_200577922_IL6U4PM336GJAJIDY3EM9XZZOVUGDDJS',
         goalID: '90151207922'
       }
     },

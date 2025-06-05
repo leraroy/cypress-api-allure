@@ -1,4 +1,4 @@
-export const goalURL  = "/team/90151207922/goal";
+export const goalURL  = "/team/90151254704/goal";
 import * as allure from "allure-js-commons";
 
 export const getGoals =() => {
